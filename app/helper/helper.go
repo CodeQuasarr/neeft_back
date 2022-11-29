@@ -5,8 +5,10 @@ package helper
  */
 
 import (
+	"errors"
 	"github.com/gofiber/fiber/v2"
 	"golang.org/x/crypto/bcrypt"
+	"regexp"
 )
 
 // HandleErr is a helper function to handle errors
@@ -30,6 +32,16 @@ func ComparePasswords(hashedPwd string, plainPwd []byte) bool {
 		return false
 	}
 	return true
+}
+
+func CheckEmail(email string) (bool, error) {
+	if len(email) < 3 && len(email) > 254 {
+		return false, errors.New("L'email est trop court ou trop long")
+	}
+	if m, _ := regexp.MatchString("^[a-z0-9._%+\\-]+@[a-z0-9.\\-]+\\.[a-z]{2,4}$", email); !m {
+		return false, errors.New("L'email n'est pas valide")
+	}
+	return true, nil
 }
 
 //---------------------ERRORS---------------------//
