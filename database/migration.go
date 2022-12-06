@@ -6,6 +6,7 @@ package database
 
 import (
 	"gorm.io/gorm"
+	"neeft_back/app/models/teams"
 	"neeft_back/app/models/users"
 )
 
@@ -13,6 +14,7 @@ import (
 func RunMigration(db *gorm.DB) {
 	err := db.AutoMigrate(
 		&users.User{},
+		&teams.Team{},
 	)
 	if err != nil {
 		return

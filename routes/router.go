@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/gofiber/fiber/v2"
 	"neeft_back/app/controllers/authController"
+	"neeft_back/app/controllers/teams"
 	"neeft_back/app/controllers/users"
 )
 
@@ -13,10 +14,15 @@ func SetupRouters(app *fiber.App) {
 	api.Post("login", authController.Login)
 
 	//------------------ Users ------------------
-	api.Post("/users", users.CreateUser)
+	api.Post("/user", users.CreateUser)
 	api.Get("/users", users.GetAllUser)
 	api.Get("/user/:id", users.GetUser)
 	api.Put("/user/:id", users.UpdateUser)
 	api.Delete("/user/:id", users.DeleteUser)
+
+	//------------------ Teams ------------------
+	api.Post("/team", teams.CreateTeam)
+	api.Get("/teams", teams.GetAllTeam)
+	api.Get("/team/:id", teams.GetTeam)
 
 }
