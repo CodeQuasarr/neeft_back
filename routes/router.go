@@ -4,6 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"neeft_back/app/controllers/authController"
 	"neeft_back/app/controllers/teams"
+	"neeft_back/app/controllers/tournament"
 	"neeft_back/app/controllers/users"
 )
 
@@ -24,5 +25,10 @@ func SetupRouters(app *fiber.App) {
 	api.Post("/team", teams.CreateTeam)
 	api.Get("/teams", teams.GetAllTeam)
 	api.Get("/team/:id", teams.GetTeam)
+
+	//------------------ Teams ------------------
+	api.Post("/tournament", tournament.CreateTournament)
+	api.Get("/tournaments", tournament.GetAllTournament)
+	api.Get("/tournament/:id", tournament.GetTournament)
 
 }

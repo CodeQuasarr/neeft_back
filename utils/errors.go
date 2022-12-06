@@ -52,7 +52,7 @@ var AtLeastTwoTeamsError = Error{
 
 var TournamentWithSameNameUnfinishedError = Error{
 	Code:    "ERR11",
-	Message: "A tournament with the same name already exists and isn't finished",
+	Message: "A tournaments with the same name already exists and isn't finished",
 }
 
 var InvalidTeamSizeError = Error{
