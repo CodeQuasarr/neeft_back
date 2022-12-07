@@ -1,26 +1,21 @@
 package main
 
+/**
+²* @Author: Neeft, ANYARONKE Daré Samuel
+*/
 import (
-	"github.com/gin-gonic/gin"
-	"neeft_back/controllers"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/logger"
+	"log"
+	"neeft_back/database"
+	"neeft_back/routes"
 )
 
 func main() {
-	controllers.InitDatabase()
+	database.ConnectDb() // Initialize the database if it does not exist (it is created automatically the tables thanks to the migration)
+	app := fiber.New()
+	app.Use(logger.New())
 
-	r := gin.Default()
-
-	r.GET("/", controllers.Accueil)
-	r.POST("/connect", controllers.Connect)
-	r.POST("/new_team", controllers.NewTeam)
-	r.POST("/new_tournament", controllers.NewTournament)
-	r.POST("/register", controllers.Register)
-
-	// CORS OPTIONS requests
-	r.OPTIONS("/connect", controllers.ConnectOptions)
-	r.OPTIONS("/new_team", controllers.NewTeamOptions)
-	r.OPTIONS("/new_tournament", controllers.NewTournament)
-	r.OPTIONS("/register", controllers.RegisterOptions)
-
-	r.Run()
+	routes.SetupRouters(app)
+	log.Fatal(app.Listen(":3000"))
 }
