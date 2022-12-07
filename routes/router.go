@@ -21,14 +21,19 @@ func SetupRouters(app *fiber.App) {
 	api.Put("/user/:id", users.UpdateUser)
 	api.Delete("/user/:id", users.DeleteUser)
 
+	//------------------ Users Friend ------------------
+	api.Post("/friend", users.CreateUserFriend)
+	api.Get("/show-friend/:id", users.GetUserFriends)
+
 	//------------------ Teams ------------------
 	api.Post("/team", teams.CreateTeam)
 	api.Get("/teams", teams.GetAllTeam)
 	api.Get("/team/:id", teams.GetTeam)
 
-	//------------------ Teams ------------------
+	//------------------ Tournaments ------------------
 	api.Post("/tournament", tournament.CreateTournament)
 	api.Get("/tournaments", tournament.GetAllTournament)
 	api.Get("/tournament/:id", tournament.GetTournament)
+	api.Delete("/tournament/:id", tournament.DeleteTournament)
 
 }

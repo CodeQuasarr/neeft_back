@@ -45,7 +45,7 @@ func CreateTeam(c *fiber.Ctx) error {
 	}
 
 	var user usersModel.User
-	if err := usersController.FindUser(team.UserRefer, &user); err != nil {
+	if err := usersController.FindUser(team.UserId, &user); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(err.Error())
 	}
 
@@ -62,7 +62,7 @@ func GetAllTeam(c *fiber.Ctx) error {
 	var responseTeams []TeamSerialize
 	for _, team := range teamsModel {
 		var user usersModel.User
-		database.Database.Db.Find(&user, "id = ?", team.UserRefer)
+		database.Database.Db.Find(&user, "id = ?", team.UserId)
 		responseTeam := CreateResponseTeam(user, team)
 		responseTeams = append(responseTeams, responseTeam)
 	}
@@ -94,7 +94,7 @@ func GetTeam(c *fiber.Ctx) error {
 	}
 
 	var user usersModel.User
-	database.Database.Db.First(&user, team.UserRefer)
+	database.Database.Db.First(&user, team.UserId)
 	responseTeam := CreateResponseTeam(user, team)
 
 	return c.Status(200).JSON(responseTeam)

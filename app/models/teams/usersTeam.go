@@ -6,8 +6,8 @@ import (
 
 type UsersTeam struct {
 	ID     uint       `json:"id" gorm:"primaryKey"`
-	UserId uint       `gorm:"not null" json:"user_id"`
+	UserId uint       `gorm:"not null" json:"userId"`
 	User   users.User `gorm:"foreignkey:UserId"`
-	TeamId uint       `gorm:"not null" json:"team_id"`
+	TeamId uint       `gorm:"not null" json:"teamId"`
 	Team   Team       `gorm:"foreignkey:TeamId"`
 }

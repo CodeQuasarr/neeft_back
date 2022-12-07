@@ -17,6 +17,7 @@ func RunMigration(db *gorm.DB) {
 		&users.User{},
 		&teams.Team{},
 		&tournaments.Tournament{},
+		&users.AddFriend{},
 	)
 	if err != nil {
 		return

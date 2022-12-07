@@ -11,8 +11,8 @@ import (
 
 type Team struct {
 	ID              uint       `json:"id" gorm:"primaryKey"`
-	UserRefer       int        `gorm:"not null" json:"createBy"`
-	User            users.User `gorm:"foreignkey:UserRefer"`
+	UserId          int        `gorm:"not null" json:"createBy"`
+	User            users.User `gorm:"foreignkey:UserId"`
 	Name            string     `gorm:"varchar(255)" json:"name"`
 	UserCount       uint       `gorm:"uint" json:"userCount"`
 	GameName        string     `gorm:"varchar(255)" json:"gameName"`
